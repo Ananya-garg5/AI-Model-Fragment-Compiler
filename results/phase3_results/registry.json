@@ -1,0 +1,115 @@
+{
+  "standard": {
+    "base": "mistralai/Mistral-7B-Instruct-v0.2",
+    "base_revision": "63a8b081895390a26e140280378bc85ec8bce07a",
+    "r": 16,
+    "alpha": 32,
+    "targets": [
+      "down_proj",
+      "gate_proj",
+      "k_proj",
+      "o_proj",
+      "q_proj",
+      "up_proj",
+      "v_proj"
+    ]
+  },
+  "fragments": {
+    "json": {
+      "id": "json",
+      "type": "task",
+      "description": "Extract structured information from text into a JSON object that follows a given schema.",
+      "prompt_format": "chat template; 'Extract the information... Schema: ... Text: ...'",
+      "metric": "field-level F1",
+      "base": 0.369,
+      "solo": 0.662,
+      "source": "in-house",
+      "revision": null,
+      "sha256": "a457bc8b686518e5a39bbcb8975eb478c7c7f1f6b891f45a74527db69b6532fb",
+      "path": "/kaggle/working/adapters/json",
+      "r": 16,
+      "alpha": 32,
+      "target_modules": [
+        "down_proj",
+        "gate_proj",
+        "k_proj",
+        "o_proj",
+        "q_proj",
+        "up_proj",
+        "v_proj"
+      ],
+      "compat": "OK",
+      "merge_weight": 0.538
+    },
+    "tone": {
+      "id": "tone",
+      "type": "style",
+      "description": "Write a warm, empathetic customer-support reply to a customer's message.",
+      "prompt_format": "chat template; 'Subject: ...\\n\\n<customer message>' (no instruction)",
+      "metric": "reply loss (lower is better)",
+      "base": 2.832,
+      "solo": 1.663,
+      "source": "in-house",
+      "revision": null,
+      "sha256": "705ef1266e1351d37a303877d065495591be5eb1ef07aa583d1f0c4fc53db778",
+      "path": "/kaggle/working/adapters/tone",
+      "r": 16,
+      "alpha": 32,
+      "target_modules": [
+        "down_proj",
+        "gate_proj",
+        "k_proj",
+        "o_proj",
+        "q_proj",
+        "up_proj",
+        "v_proj"
+      ],
+      "compat": "OK",
+      "merge_weight": 0.377
+    },
+    "sql": {
+      "id": "sql",
+      "type": "task",
+      "description": "Convert a natural-language question about a database into an SQL query.",
+      "prompt_format": "chat template; SuperNI task107 input (Definition + examples + question)",
+      "metric": "ROUGE-L (EM also tracked)",
+      "base": 0.5,
+      "solo": 0.737,
+      "source": "Lots-of-LoRAs/Mistral-7B-Instruct-v0.2-4b-r16-task107",
+      "revision": "3c4df4d2046d03efd4cab9c08968434e80ef5e4b",
+      "sha256": "8e1179f274449a1f0acae1e54bf92c7c7ce91cc69ea12c6fc1aed20740f5ec22",
+      "path": "/kaggle/working/adapters/sql",
+      "r": 16,
+      "alpha": 32,
+      "target_modules": [
+        "k_proj",
+        "q_proj",
+        "v_proj"
+      ],
+      "compat": "ALIGNABLE",
+      "merge_weight": 0.941
+    },
+    "samsum": {
+      "id": "samsum",
+      "type": "task",
+      "description": "Summarize a chat conversation between people in one or two sentences.",
+      "prompt_format": "chat template; SuperNI task1572 Definition + examples, dialogue joined by ', '",
+      "metric": "ROUGE-L",
+      "base": 0.312,
+      "solo": 0.418,
+      "source": "Lots-of-LoRAs/Mistral-7B-Instruct-v0.2-4b-r16-task1572",
+      "revision": "91dac07507db426fe186cf23049ad219e4a420ba",
+      "sha256": "d115681fa8f051f840569f6cdd688064a35b709c2a72e4a59a404f293c8fad3d",
+      "path": "/kaggle/working/adapters/samsum",
+      "r": 16,
+      "alpha": 32,
+      "target_modules": [
+        "k_proj",
+        "q_proj",
+        "v_proj"
+      ],
+      "compat": "ALIGNABLE",
+      "merge_weight": 0.674
+    }
+  }
+}
