@@ -1,0 +1,222 @@
+{
+  "registry_schema": "fragment-registry/v1",
+  "fragment_id": "json-extract-lora",
+  "version": "2.0.0",
+  "fragment_type": "task - structured extraction (pair with schema-constrained decoding at serving time)",
+  "task": "extract information from a text as one JSON object that follows a given JSON schema",
+  "prompt_contract": {
+    "template": "Extract the information from the text as JSON that follows the schema.\nOutput JSON only, no explanation.\n\nInstruction: {instruction}\n\nSchema:\n{schema}\n\nText:\n{content}",
+    "fields": [
+      "instruction",
+      "schema",
+      "content"
+    ],
+    "default_instruction": "Extract all the information that the schema asks for.",
+    "output_format": "raw JSON object, no wrapper text"
+  },
+  "base_model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "base_revision": "63a8b081895390a26e140280378bc85ec8bce07a",
+  "chat_template_sha256": "796853172235ab3aaa4810013ddfe2eab481bda3306dad4f700c00d436eed596",
+  "quantization": "bnb-nf4-double-quant, fp16-compute",
+  "standard_schema": "fragment-standard/v1",
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "bias": "none",
+    "use_rslora": false,
+    "use_dora": false,
+    "target_modules": [
+      "down_proj",
+      "gate_proj",
+      "k_proj",
+      "o_proj",
+      "q_proj",
+      "up_proj",
+      "v_proj"
+    ]
+  },
+  "lora_scaling": 2.0,
+  "compatibility_key": "297b149cc2c7e438",
+  "training": {
+    "seed": 42,
+    "lr": 0.0002,
+    "scheduler": "linear",
+    "warmup_frac": 0.03,
+    "epochs": 2,
+    "optimizer": "adamw_torch",
+    "weight_decay": 0.01,
+    "effective_batch": 16,
+    "loss": "completion-only + EOS appended",
+    "overlong": "drop, never truncate",
+    "best_model": "load_best_model_at_end on eval_loss",
+    "save_total_limit": 3,
+    "epochs_run": 2,
+    "num_train_examples": 181,
+    "max_len": 1536,
+    "smoke_test": false
+  },
+  "dataset": {
+    "name": "scrapegraphai/scrapegraphai-100k",
+    "revision": "b8dfeefa0d9da5c6c1cbf7f02b9b1fae8dd5bc07",
+    "data_card": {
+      "dataset": "scrapegraphai/scrapegraphai-100k",
+      "dataset_revision": "b8dfeefa0d9da5c6c1cbf7f02b9b1fae8dd5bc07",
+      "base_model": "mistralai/Mistral-7B-Instruct-v0.2",
+      "base_revision": "63a8b081895390a26e140280378bc85ec8bce07a",
+      "chat_template_sha256": "796853172235ab3aaa4810013ddfe2eab481bda3306dad4f700c00d436eed596",
+      "template": "Extract the information from the text as JSON that follows the schema.\nOutput JSON only, no explanation.\n\nInstruction: {instruction}\n\nSchema:\n{schema}\n\nText:\n{content}",
+      "default_instruction": "Extract all the information that the schema asks for.",
+      "rows_placeholders_blanked": 56,
+      "max_len": 1536,
+      "seed": 42,
+      "cfg": {
+        "target_rows": 6000,
+        "scan_limit": 200000,
+        "min_content": 200,
+        "max_content": 6000,
+        "max_schema_chars": 2000,
+        "max_resp_depth": 4,
+        "max_instruction_chars": 300,
+        "min_leaves": 1,
+        "min_grounded": 0.7,
+        "min_ascii": 0.9,
+        "max_per_schema": 20,
+        "max_per_family": 25,
+        "val_schema_frac": 0.06
+      },
+      "junk_strong": [
+        "not a robot",
+        "captcha",
+        "verify you are human",
+        "verifying you are human",
+        "are you a human",
+        "access denied",
+        "unusual traffic",
+        "you have been blocked",
+        "please enable cookies",
+        "enable javascript and cookies",
+        "security of your connection",
+        "ray id",
+        "just a moment",
+        "attention required"
+      ],
+      "junk_window": 1500,
+      "model_allow": null,
+      "n_scanned": 25865,
+      "n_kept": 193,
+      "n_train": 181,
+      "n_val": 7,
+      "n_test": 5,
+      "val_schema_frac": 0.06,
+      "test_schema_frac": 0.06,
+      "rejected": {
+        "blocked page error": 8453,
+        "junk page": 11676,
+        "empty chapter error": 552,
+        "over 1536 tokens": 1818,
+        "instruction too long": 773,
+        "too empty": 446,
+        "not grounded in text": 799,
+        "schema too big": 471,
+        "not english": 185,
+        "instruction not english": 22,
+        "duplicate content": 62,
+        "too deep": 5,
+        "schema family cap": 397,
+        "keys not in schema": 12,
+        "response not object": 1
+      },
+      "top_models": [
+        [
+          "gpt-4o-mini",
+          116
+        ],
+        [
+          "gpt-4o",
+          24
+        ],
+        [
+          "llama3.1",
+          6
+        ],
+        [
+          "llama3.2",
+          5
+        ],
+        [
+          null,
+          4
+        ],
+        [
+          "gemma3:27b",
+          4
+        ],
+        [
+          "mistral-large-latest",
+          3
+        ],
+        [
+          "llama3",
+          3
+        ],
+        [
+          "llama3-8b-8192",
+          2
+        ],
+        [
+          "qwen2.5:14b-instruct-q5_K_M",
+          2
+        ],
+        [
+          "hermes3",
+          2
+        ],
+        [
+          "o4-mini",
+          2
+        ],
+        [
+          "mistral",
+          2
+        ],
+        [
+          "gpt-4.1",
+          2
+        ],
+        [
+          "models/gemini-pro",
+          2
+        ]
+      ],
+      "created_utc": "2026-11-23T07:44:44.130386+00:00"
+    }
+  },
+  "references": [
+    "Hu et al. 2021 (LoRA)",
+    "Schulman et al. 2025 (LoRA Without Regret): all-layer targets, alpha 32",
+    "Biderman et al. 2024 (LoRA Learns Less and Forgets Less)"
+  ],
+  "adapter_file": "adapter_model.safetensors",
+  "env": {
+    "transformers": "5.0.0",
+    "peft": "0.21.2",
+    "torch": "2.11.0+cu130",
+    "bitsandbytes": "0.50.2",
+    "datasets": "4.8.5"
+  },
+  "created_utc": "2026-11-23T07:46:19.620083+00:00",
+  "adapter_size_bytes": 167832240,
+  "sha256": "a457bc8b686518e5a39bbcb8975eb478c7c7f1f6b891f45a74527db69b6532fb",
+  "base_val_loss": 0.6874618530273438,
+  "best_val_loss": 0.12115402519702911,
+  "test_loss": 0.03881241753697395,
+  "best_checkpoint": "None",
+  "delta_norms": {
+    "mean": 0.23281867123608077,
+    "max": 0.4161299169063568,
+    "l2_total": 3.8635043431277833,
+    "n_modules": 224
+  },
+  "standard_check": "MERGE-READY"
+}

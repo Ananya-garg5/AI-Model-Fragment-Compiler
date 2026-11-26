@@ -1,0 +1,100 @@
+{
+  "fragment_id": "json-extract-lora",
+  "adapter_sha256": "a457bc8b686518e5a39bbcb8975eb478c7c7f1f6b891f45a74527db69b6532fb",
+  "eval_set_sha256": "28a9f24fbf87e6f496c46897322faa0f039f89559a73b4bb6e55cf37ad5d04f7",
+  "n_rows": 71,
+  "topics": {
+    "medical": 7,
+    "ecommerce": 10,
+    "manufacturing": 10,
+    "business": 6,
+    "simple": 10,
+    "media": 10,
+    "travel": 10,
+    "technology": 8
+  },
+  "template": "Extract the information from the text as JSON that follows the schema.\nOutput JSON only, no explanation.\n\nInstruction: {instruction}\n\nSchema:\n{schema}\n\nText:\n{content}",
+  "default_instruction": "Extract all the information that the schema asks for.",
+  "prompt_contract": {
+    "template": "Extract the information from the text as JSON that follows the schema.\nOutput JSON only, no explanation.\n\nInstruction: {instruction}\n\nSchema:\n{schema}\n\nText:\n{content}",
+    "fields": [
+      "instruction",
+      "schema",
+      "content"
+    ],
+    "default_instruction": "Extract all the information that the schema asks for.",
+    "output_format": "raw JSON object, no wrapper text"
+  },
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 400,
+    "stop": "first complete top-level JSON object"
+  },
+  "parse": {
+    "scoring": "lenient: first balanced parseable JSON object",
+    "raw_only_json": "whole output must be one JSON object"
+  },
+  "metric": "multiset field-level precision/recall/F1 over (path, normalised leaf value); empty/null leaves ignored; no JSON found = 0",
+  "results": {
+    "base": {
+      "n": 71,
+      "raw_only_json": 0.7464788732394366,
+      "json_found": 0.9859154929577465,
+      "schema_valid": 0.647887323943662,
+      "P": 0.5234609988634897,
+      "R": 0.5059038720068081,
+      "F1": 0.5102259137400593,
+      "F1_ci95": [
+        0.4065086644554462,
+        0.6016961466027351
+      ],
+      "cut_off": 0.014084507042253521,
+      "errors": 0
+    },
+    "lora": {
+      "n": 71,
+      "raw_only_json": 0.8873239436619719,
+      "json_found": 0.971830985915493,
+      "schema_valid": 0.7605633802816901,
+      "P": 0.7150413851348739,
+      "R": 0.6904170881623206,
+      "F1": 0.6953693115244869,
+      "F1_ci95": [
+        0.6080581418489862,
+        0.7744404461355759
+      ],
+      "cut_off": 0.028169014084507043,
+      "errors": 0
+    },
+    "base_gcd": {
+      "n": 19,
+      "raw_only_json": 0.8947368421052632,
+      "json_found": 1.0,
+      "schema_valid": 0.5789473684210527,
+      "P": 0.7340952912908106,
+      "R": 0.6676083007556743,
+      "F1": 0.696889395272833,
+      "F1_ci95": [
+        0.5532301081526829,
+        0.8200558475375523
+      ],
+      "cut_off": 0.0,
+      "errors": 5
+    },
+    "lora_gcd": {
+      "n": 19,
+      "raw_only_json": 0.9473684210526315,
+      "json_found": 1.0,
+      "schema_valid": 0.5789473684210527,
+      "P": 0.803194325733489,
+      "R": 0.7294425617310548,
+      "F1": 0.7620665337147577,
+      "F1_ci95": [
+        0.6304635836915661,
+        0.8702099980567656
+      ],
+      "cut_off": 0.0,
+      "errors": 5
+    }
+  }
+}
