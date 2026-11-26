@@ -1,0 +1,30 @@
+# Core model / fine-tuning
+torch
+transformers
+peft
+accelerate
+bitsandbytes  # 4-bit quantization; requires an NVIDIA CUDA GPU at runtime
+safetensors
+huggingface_hub
+sentencepiece
+
+# Data
+datasets
+numpy
+pandas
+tqdm
+
+# Evaluation and merging
+scikit-learn
+sentence-transformers
+rouge-score
+nevergrad
+jsonschema
+outlines
+
+# Plotting
+matplotlib
+
+# Notebooks
+kagglehub
+ipykernel
