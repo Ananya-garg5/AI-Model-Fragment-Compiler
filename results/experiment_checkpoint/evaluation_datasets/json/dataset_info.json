@@ -1,0 +1,60 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "json_data_extraction",
+  "dataset_size": 2455336,
+  "description": "",
+  "download_size": 966924,
+  "features": {
+    "title": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "topic": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "item_id": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "schema": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "item": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "text": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "medium": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "__index_level_0__": {
+      "dtype": "int64",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 3422260,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 2455336,
+      "num_examples": 484,
+      "dataset_name": "json_data_extraction"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

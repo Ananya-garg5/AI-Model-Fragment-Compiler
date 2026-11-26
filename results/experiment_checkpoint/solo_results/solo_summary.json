@@ -1,0 +1,30 @@
+{
+    "json": {
+        "expected": 71,
+        "saved": 71,
+        "successful": 70,
+        "errors": 1,
+        "result_file": "/kaggle/working/results/solo/json_solo.jsonl"
+    },
+    "tone": {
+        "expected": 150,
+        "saved": 150,
+        "successful": 150,
+        "errors": 0,
+        "result_file": "/kaggle/working/results/solo/tone_solo.jsonl"
+    },
+    "sql": {
+        "expected": 204,
+        "saved": 204,
+        "successful": 204,
+        "errors": 0,
+        "result_file": "/kaggle/working/results/solo/sql_solo.jsonl"
+    },
+    "samsum": {
+        "expected": 150,
+        "saved": 150,
+        "successful": 150,
+        "errors": 0,
+        "result_file": "/kaggle/working/results/solo/samsum_solo.jsonl"
+    }
+}

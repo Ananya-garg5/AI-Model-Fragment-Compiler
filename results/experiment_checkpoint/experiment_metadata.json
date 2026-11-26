@@ -1,0 +1,67 @@
+{
+    "project": "AI Model Fragment Compiler",
+    "phase": "Phase 1 - Base evaluation",
+    "base_model": "mistralai/Mistral-7B-Instruct-v0.2",
+    "base_revision": "63a8b081895390a26e140280378bc85ec8bce07a",
+    "seed": 42,
+    "generation": {
+        "do_sample": false,
+        "json_max_new_tokens": 400,
+        "tone_max_new_tokens": 250,
+        "sql_max_new_tokens": 200,
+        "samsum_max_new_tokens": 150
+    },
+    "evaluation_sources": {
+        "json": "paraloq/json_data_extraction",
+        "tone": "arpieb/consumer-electronics-support; 150 sampled conversations; seed 42; input excludes final agent turn; reference is final agent turn",
+        "sql": "Lots-of-LoRAs/task107_splash_question_to_sql - test split",
+        "samsum": "knkarthick/samsum - test split"
+    },
+    "base_success_counts": {
+        "json": 70,
+        "tone": 150,
+        "sql": 204,
+        "samsum": 150
+    },
+    "known_issue": "JSON example 56 failed with CUDA OOM",
+    "environment": {
+        "torch": "2.11.0+cu130",
+        "transformers": "5.20.2",
+        "peft": "0.21.2",
+        "accelerate": "1.15.0",
+        "datasets": "4.8.5",
+        "huggingface-hub": "1.33.0",
+        "safetensors": "0.8.0"
+    },
+    "tone_evaluation_count": 150,
+    "solo_evaluation": {
+        "json": {
+            "expected": 71,
+            "saved": 71,
+            "successful": 70,
+            "errors": 1,
+            "result_file": "/kaggle/working/results/solo/json_solo.jsonl"
+        },
+        "tone": {
+            "expected": 150,
+            "saved": 150,
+            "successful": 150,
+            "errors": 0,
+            "result_file": "/kaggle/working/results/solo/tone_solo.jsonl"
+        },
+        "sql": {
+            "expected": 204,
+            "saved": 204,
+            "successful": 204,
+            "errors": 0,
+            "result_file": "/kaggle/working/results/solo/sql_solo.jsonl"
+        },
+        "samsum": {
+            "expected": 150,
+            "saved": 150,
+            "successful": 150,
+            "errors": 0,
+            "result_file": "/kaggle/working/results/solo/samsum_solo.jsonl"
+        }
+    }
+}

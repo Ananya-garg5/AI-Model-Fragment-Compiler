@@ -1,0 +1,55 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "task107_splash_question_to_sql",
+  "dataset_size": 7050154,
+  "description": "",
+  "download_size": 891940,
+  "features": {
+    "input": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "output": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "List"
+    },
+    "id": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 7942094,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 5635689,
+      "num_examples": 1624,
+      "dataset_name": "task107_splash_question_to_sql"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 708883,
+      "num_examples": 204,
+      "dataset_name": "task107_splash_question_to_sql"
+    },
+    "valid": {
+      "name": "valid",
+      "num_bytes": 705582,
+      "num_examples": 203,
+      "dataset_name": "task107_splash_question_to_sql"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
