@@ -1,0 +1,15 @@
+method,family,setting,GR_json,GR_sql,GR_samsum,GR_tone,sql_em_merged,svd_recon_error,avg_GR,worst_GR,avg_GR_capped,rerun_avg_GR,rerun_worst_GR
+M1  λ=1.0,Weighted (concat),λ=1.0,0.13,0.93,0.64,1.19,0.05,0.0,0.72,0.13,0.68,,
+M1  λ=0.5,Weighted (concat),λ=0.5,0.99,0.87,0.83,1.22,0.017,0.0,0.98,0.83,0.92,,
+M1  λ=0.25,Weighted (concat),λ=0.25,0.96,0.85,0.64,1.12,0.033,0.0,0.89,0.64,0.86,,
+M2  TIES d=0.5,TIES,density 0.5,0.41,0.86,0.55,1.11,0.033,0.367,0.73,0.41,0.7,0.73,0.41
+M2  TIES d=0.2,TIES,density 0.2,1.0,0.83,0.77,1.19,0.033,0.486,0.95,0.77,0.9,0.99,0.87
+M3  DELLA d=0.5,DELLA,density 0.5,0.97,0.97,0.62,1.14,0.033,0.7,0.92,0.62,0.89,0.89,0.66
+M3  DELLA d=0.2,DELLA,density 0.2,0.61,0.97,0.79,1.16,0.033,0.849,0.88,0.61,0.84,0.82,0.47
+M4  learned weights,LoraHub-style (learned),dev-set search,0.92,1.06,0.85,1.24,0.033,0.0,1.02,0.85,0.94,,
+M5  Core+TSV α=1.0,Core Space + TSV,α=1.0,0.07,0.89,0.88,1.05,0.017,0.0,0.72,0.07,0.71,,
+M5  Core+TSV α=0.5,Core Space + TSV,α=0.5,0.93,0.9,0.87,1.12,0.017,0.0,0.96,0.87,0.92,,
+M6  Core+Iso α=1.0,Core Space + Iso-C,α=1.0,-1.16,0.84,0.79,1.15,0.017,0.0,0.4,-1.16,0.37,,
+M6  Core+Iso α=0.5,Core Space + Iso-C,α=0.5,-1.15,0.76,0.41,1.02,0.017,0.0,0.26,-1.15,0.26,,
+M7  NormBal+concat,Norm-balanced (ours),λ=0.5,0.64,0.76,1.06,1.23,0.017,0.0,0.92,0.64,0.85,,
+M7  NormBal+CoreTSV,Norm-balanced (ours),α=0.5,0.3,0.87,0.86,1.18,0.017,0.0,0.8,0.3,0.76,,

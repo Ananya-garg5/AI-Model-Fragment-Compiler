@@ -1,0 +1,4 @@
+method,base_json,solo_json,merged_json,GR_json,base_sql,solo_sql,merged_sql,GR_sql,base_samsum,solo_samsum,merged_samsum,GR_samsum,avg_GR,worst_GR
+M4  learned weights,0.383,0.668,0.61,0.8,0.499,0.741,0.714,0.89,0.31,0.411,0.401,0.91,0.86,0.8
+M1  λ=0.5,0.383,0.668,0.609,0.8,0.499,0.741,0.701,0.83,0.31,0.411,0.399,0.88,0.84,0.8
+M5  Core+TSV α=0.5,0.383,0.668,0.526,0.5,0.499,0.741,0.7,0.83,0.31,0.411,0.386,0.76,0.7,0.5
