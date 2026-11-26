@@ -1,0 +1,44 @@
+# ---- Model weights (hosted on Hugging Face Hub, not in git) ----
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+
+# ---- Secrets / credentials ----
+.env
+*.env
+kaggle.json
+.huggingface/
+hf_token*
+secrets*
+
+# ---- Hugging Face / cache folders ----
+.cache/
+hf_cache/
+wandb/
+outputs/
+offload/
+
+# ---- Drafts / office temp files ----
+~$*
+*.tmp
+*.docx
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
