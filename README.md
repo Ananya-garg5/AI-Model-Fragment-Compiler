@@ -182,6 +182,7 @@ Other measurements:
 .
 ├── README.md
 ├── .gitignore
+├── requirements.txt
 ├── notebooks/
 │   ├── 01_train_json_adapter.ipynb      # JSON extraction adapter training
 │   ├── 02_train_tone_adapter.ipynb      # Support-reply tone adapter training
@@ -212,12 +213,11 @@ Other measurements:
 ## Getting Started
 
 ### Requirements
-- Python 3.10+
+- Python 3.10–3.13 (3.14 is not yet supported by `outlines-core`)
 - A GPU with at least 8 GB VRAM (peak usage was 7.74 GB). All experiments ran on Kaggle GPUs.
 
 ```bash
-pip install torch transformers peft bitsandbytes accelerate datasets \
-            sentence-transformers scikit-learn nevergrad rouge-score
+pip install -r requirements.txt
 ```
 
 ### Load a fragment
