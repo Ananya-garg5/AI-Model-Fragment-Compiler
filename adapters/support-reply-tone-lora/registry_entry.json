@@ -1,0 +1,203 @@
+{
+  "registry_schema": "fragment-registry/v1",
+  "fragment_id": "support-reply-tone",
+  "version": "1.0.0",
+  "fragment_type": "style - always-on, plain-text output (task fragments such as sql/legal/json supply the content)",
+  "task": "write a warm, acknowledging customer-support reply",
+  "prompt_contract": {
+    "input": "Subject: {subject}\\n\\n{body}  (customer message only, no instruction scaffolding)",
+    "output": "plain-text reply, no JSON",
+    "chat_template": "tokenizer.apply_chat_template, add_generation_prompt=True"
+  },
+  "base_model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "base_revision": "63a8b081895390a26e140280378bc85ec8bce07a",
+  "chat_template_sha256": "796853172235ab3aaa4810013ddfe2eab481bda3306dad4f700c00d436eed596",
+  "quantization": "bnb-nf4-double-quant, fp16-compute",
+  "standard_schema": "fragment-standard/v1",
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "bias": "none",
+    "use_rslora": false,
+    "use_dora": false,
+    "target_modules": [
+      "down_proj",
+      "gate_proj",
+      "k_proj",
+      "o_proj",
+      "q_proj",
+      "up_proj",
+      "v_proj"
+    ]
+  },
+  "lora_scaling": 2.0,
+  "compatibility_key": "297b149cc2c7e438",
+  "training": {
+    "seed": 42,
+    "lr": 0.0002,
+    "scheduler": "linear",
+    "warmup_frac": 0.03,
+    "epochs": 2,
+    "optimizer": "adamw_torch",
+    "weight_decay": 0.01,
+    "effective_batch": 16,
+    "loss": "completion-only + EOS appended",
+    "overlong": "drop, never truncate",
+    "best_model": "load_best_model_at_end on eval_loss",
+    "save_total_limit": 3,
+    "epochs_run": 2,
+    "num_train_examples": 2800,
+    "max_len": 1024,
+    "smoke_test": false
+  },
+  "dataset": {
+    "name": "Tobi-Bueck/customer-support-tickets",
+    "revision": "ddf1c81a5475992c4fa6752bf1e8b4e31f07bbeb",
+    "license": "CC-BY-NC-4.0 (non-commercial)",
+    "nature": "synthetic support tickets",
+    "language": "English only",
+    "filters": "replies with acknowledgement/apology marker; placeholders removed; near-duplicate clusters split",
+    "empathy_regex": "\\b(sorry|apolog\\w*|regret\\w*|inconvenien\\w*|frustrat\\w*|understand (?:how|that|the|your|this|why)|i can (?:see|imagine|understand)|appreciate your (?:patience|understanding|feedback)|thank you for (?:bringing|letting|your patience|your understanding)|we (?:truly |really )?value)\\b",
+    "near_dup_threshold": 0.6
+  },
+  "references": [
+    "Hu et al. 2021 (LoRA)",
+    "Rashkin et al. ACL 2019 (inspiration for empathetic replies only; not trained on)"
+  ],
+  "adapter_file": "adapter_model.safetensors",
+  "adapter_size_bytes": 167832240,
+  "sha256": "b818e99c66095ddbde16b01efe14242ec517858c4f019ac157f7ba76d3ffe40c",
+  "env": {
+    "transformers": "5.0.0",
+    "peft": "0.20.0",
+    "torch": "2.11.0+cu128",
+    "bitsandbytes": "0.50.2",
+    "datasets": "4.8.5"
+  },
+  "created_utc": "2026-10-07T09:54:27.993505+00:00",
+  "base_val_loss": 3.0167739391326904,
+  "best_val_loss": 0.8213024735450745,
+  "best_checkpoint": "/kaggle/working/support-reply-tone-ckpt/checkpoint-325",
+  "base_test_loss": 3.092893362045288,
+  "lora_test_loss": 0.9196513891220093,
+  "n_test": 150,
+  "eval_scores": {
+    "judge": {
+      "primary_vs_prompted_base": {
+        "n": 150,
+        "win": 0,
+        "split": 133,
+        "loss": 17,
+        "win_rate": 0.44333333333333336,
+        "ci95": [
+          0.3662333851055614,
+          0.5232633439976201
+        ]
+      },
+      "vs_concise_prompted_base": {
+        "n": 150,
+        "win": 0,
+        "split": 126,
+        "loss": 24,
+        "win_rate": 0.42,
+        "ci95": [
+          0.34397871737684205,
+          0.5000166648864729
+        ]
+      },
+      "primary_non_truncated": {
+        "n": 137,
+        "win": 0,
+        "split": 122,
+        "loss": 15,
+        "win_rate": 0.44525547445255476,
+        "ci95": [
+          0.3646542761066355,
+          0.5288430996687038
+        ]
+      },
+      "vs_bare_base": {
+        "n": 150,
+        "win": 0,
+        "split": 134,
+        "loss": 16,
+        "win_rate": 0.44666666666666666,
+        "ci95": [
+          0.36942665000842445,
+          0.5265702715004522
+        ]
+      },
+      "adapter_longer": {
+        "n": 0,
+        "win": 0,
+        "split": 0,
+        "loss": 0,
+        "win_rate": NaN,
+        "ci95": [
+          NaN,
+          NaN
+        ]
+      },
+      "adapter_not_longer": {
+        "n": 150,
+        "win": 0,
+        "split": 133,
+        "loss": 17,
+        "win_rate": 0.44333333333333336,
+        "ci95": [
+          0.3662333851055614,
+          0.5232633439976201
+        ]
+      },
+      "gate": {
+        "win_rate": 0.65,
+        "ci_lower_above": 0.5,
+        "pass": false
+      },
+      "judge_model": "base model, adapter disabled, both orders",
+      "rubric": "You are evaluating two replies to a customer support message.\n\nCustomer message:\n{msg}\n\nReply A:\n{a}\n\nReply B:\n{b}\n\nRubric: prefer the reply that (1) acknowledges the customer's situation and feelings in a warm, human, empathetic tone (an apology or acknowledgement where fitting) AND (2) still addresses the customer's actual issue with relevant, concrete help. A warm reply that ignores the issue loses to one that is warm and helpful. Answer with a single letter: A or B.",
+      "baseline_system_prompt": "You are a customer support agent. Write a warm, empathetic reply that acknowledges the customer's situation and helps with their issue. Reply with the message text only.\n\n"
+    },
+    "truncation": {
+      "adapter": 0.0,
+      "base": 0.26,
+      "prompted_base": 0.08666666666666667,
+      "max_new_tokens": 400
+    },
+    "tone_marker_rate": {
+      "adapter": 0.9066666666666666,
+      "base": 0.7666666666666667,
+      "prompted_base": 0.9933333333333333
+    },
+    "mean_reply_chars": {
+      "adapter": 461.61333333333334,
+      "prompted_base": 1419.2733333333333
+    }
+  },
+  "control_probes": {
+    "non_support_marker_rate": {
+      "adapter": 0.25,
+      "base": 0.35,
+      "n": 20
+    },
+    "ordinary_tickets": {
+      "adapter": 0.75,
+      "prompted_base": 1.0,
+      "original_human": 0.0
+    },
+    "composite_valid_json": {
+      "adapter": 10,
+      "base": 3,
+      "total": 10
+    }
+  },
+  "delta_norms": {
+    "mean": 0.8536011416997228,
+    "max": 1.6613470315933228,
+    "l2_total": 14.281046593767536,
+    "n_modules": 224
+  },
+  "eval_frozen_sha256": "13520bb9bffce05741774fc1872f3f1955e313f55293514d6e4cbe0bcfd4d4ce",
+  "standard_check": "MERGE-READY"
+}
